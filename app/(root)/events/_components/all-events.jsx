@@ -79,8 +79,8 @@ export const AllEvents = () => {
                                     <p>{event.location}</p>
                                     <p>{event.date}</p>
                                     <p>Price: ${event.price}</p>
-                                    <p>Seats left: {event.seats}</p>
-                                    <p>View details and book!</p>
+                                    {event.seats > 0 ? <p>Seats left: {event.seats}</p> : <p className="text-destructive">No seats available</p>}
+                                    
                                 </div>
                             </Link>
                         </div>

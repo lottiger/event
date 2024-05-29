@@ -1,50 +1,50 @@
-'use client'
+'use client';
 
-import { useParams } from "next/navigation"
-import { useEffect, useState } from "react"
-import { BookEventButton } from "./book-event"
-import { useAuth } from "@clerk/nextjs"
-import Image from "next/image"
+import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { BookEventButton } from "./book-event";
+import { useAuth } from "@clerk/nextjs";
+import Image from "next/image";
 
 export const EventDetails = () => {
-  const [event, setEvent] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
-  const { id } = useParams()
-  const { userId } = useAuth()
+  const [event, setEvent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const { id } = useParams();
+  const { userId } = useAuth();
 
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/events/${id}`)
+        const response = await fetch(`http://localhost:3000/api/events/${id}`);
         if (!response.ok) {
-          throw new Error('Failed to fetch event data')
+          throw new Error('Failed to fetch event data');
         }
-        const data = await response.json()
-        setEvent(data)
+        const data = await response.json();
+        setEvent(data);
       } catch (error) {
-        console.error('Error', error)
-        setError(error.message)
+        console.error('Error', error);
+        setError(error.message);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
+    };
 
-    fetchEvent()
-  }, [id])
+    fetchEvent();
+  }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>
+    return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error}</div>
+    return <div>Error: {error}</div>;
   }
 
   if (!event) {
-    return <div>No event found.</div>
+    return <div>No event found.</div>;
   }
-  
+
   return (
     <div>
       {event.image && (
@@ -62,7 +62,7 @@ export const EventDetails = () => {
       <p>{event.date}</p>
       <p>Price: ${event.price}</p>
       <p>Seats left: {event.seats}</p>
-      <BookEventButton eventId={id} userId={userId} />
+      <BookEventButton eventId={id} userId={userId} seats={event.seats} setSeats={(newSeats) => setEvent({ ...event, seats: newSeats })} />
     </div>
-  )
-}
+  );
+};

@@ -1,13 +1,13 @@
-
-
 'use client';
 import { Button } from '@/components/ui/button';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 
-export const BookEventButton = ({ eventId, userId }) => {
+export const BookEventButton = ({ eventId, userId, seats, setSeats }) => {
   const [isBooked, setIsBooked] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const router = useRouter();
 
   const handleBookEvent = async () => {
     setLoading(true);
@@ -26,8 +26,12 @@ export const BookEventButton = ({ eventId, userId }) => {
         throw new Error('Failed to book event');
       }
 
-      await response.json();
+      const updatedEvent = await response.json();
       setIsBooked(true);
+      setSeats(updatedEvent.seats);  // Update seats state with the new count
+
+      // Redirect to the profile page after a successful booking
+      router.push('/profile');
     } catch (err) {
       setError(err.message);
     } finally {
@@ -40,10 +44,10 @@ export const BookEventButton = ({ eventId, userId }) => {
       {loading && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
       {isBooked ? (
-        <p>Event successfully booked!</p>
+        <p>Event successfully booked! Redirecting to your profile...</p>
       ) : (
-        <Button onClick={handleBookEvent} disabled={loading}>
-          Book now
+        <Button onClick={handleBookEvent} disabled={loading || seats <= 0}>
+          {seats <= 0 ? 'No seats available': 'Book now'}
         </Button>
       )}
     </div>
