@@ -9,7 +9,14 @@ function LandingPage() {
     <div> 
        <div>
       <div className="container mx-auto flex items-center justify-between py-4">
-        <p className="text-2xl font-bold">FOODIE</p>
+  
+       
+     
+      </div>
+
+      <div className="flex flex-col justify-center items-center h-screen gap-3">
+        <h1 className="text-6xl font-bold">Welcome to the secret events</h1>
+        <p className="text-muted-foreground mb-6">The most epic events in modern time, dare to dive into the new era of entertainment</p>
         <SignedOut>
             <SignInButton mode="modal">
           <Button>
@@ -19,14 +26,10 @@ function LandingPage() {
             </SignInButton>
         </SignedOut>
         <SignedIn>
-          <Link href="/events">Enter</Link>
+          <Link href="/events">
+            <Button> ENTER </Button>
+            </Link>
         </SignedIn>
-     
-      </div>
-
-      <div className="mt-36 text-center">
-        <h1 className="text-6xl font-bold">En jättebra rubrik</h1>
-        <p className="text-muted-foreground">en cool slogan</p>
       </div>
     </div>
     </div>

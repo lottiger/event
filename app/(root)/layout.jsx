@@ -1,11 +1,13 @@
-import React from 'react'
+
 import { Header } from './_components/header'
 
-function RootLayout() {
+function RootLayout({children}) {
   return (
-    <div>
-        Rootlayout
+    <div className='container mt-5'>
         <Header />
+        <main>
+          {children}
+        </main>
     </div>
   )
 }
