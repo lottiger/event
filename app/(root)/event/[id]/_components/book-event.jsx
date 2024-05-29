@@ -9,7 +9,6 @@ export const BookEventButton = ({ eventId, userId }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-
   const handleBookEvent = async () => {
     setLoading(true);
     setError(null);
@@ -22,12 +21,12 @@ export const BookEventButton = ({ eventId, userId }) => {
         },
         body: JSON.stringify({ userId }),
       });
+
       if (!response.ok) {
-        throw new Error('Failed to booking event');
+        throw new Error('Failed to book event');
       }
 
-      const data = await response.json();
-
+      await response.json();
       setIsBooked(true);
     } catch (err) {
       setError(err.message);
@@ -39,8 +38,14 @@ export const BookEventButton = ({ eventId, userId }) => {
   return (
     <div>
       {loading && <p>Loading...</p>}
-      {error && <p>{error}</p>}
-      <Button onClick={handleBookEvent}> Book now</Button>
+      {error && <p>Error: {error}</p>}
+      {isBooked ? (
+        <p>Event successfully booked!</p>
+      ) : (
+        <Button onClick={handleBookEvent} disabled={loading}>
+          Book now
+        </Button>
+      )}
     </div>
   );
 };
