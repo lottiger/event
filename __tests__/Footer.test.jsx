@@ -4,9 +4,9 @@ import { render } from '@testing-library/react';
 
 
 describe('Footer component', () => {
-  it('renders "Kontakt" heading', () => {
+  it('renders "Contact" heading', () => {
     const { getByText } = render(<Footer />);
-    const kontaktHeading = getByText('Kontakt');
-    expect(kontaktHeading).toBeInTheDocument();
+    const contactHeading = getByText('Contact');
+    expect(contactHeading).toBeInTheDocument();
   });
 });
