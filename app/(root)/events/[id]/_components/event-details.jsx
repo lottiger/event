@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { BookEventButton } from "./book-event";
 import { useAuth } from "@clerk/nextjs";
 import Image from "next/image";
+import { Loader } from "lucide-react";
 
 export const EventDetails = () => {
   const [event, setEvent] = useState(null);
@@ -34,7 +35,7 @@ export const EventDetails = () => {
   }, [id]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="flex justify-center items-center h-screen animate-spin"><Loader/></div>;
   }
 
   if (error) {

@@ -2,6 +2,7 @@
 import { Button } from '@/components/ui/button';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { Loader } from 'lucide-react';
 
 export const BookEventButton = ({ eventId, userId, seats, setSeats }) => {
   const [isBooked, setIsBooked] = useState(false);
@@ -41,10 +42,10 @@ export const BookEventButton = ({ eventId, userId, seats, setSeats }) => {
 
   return (
     <div>
-      {loading && <p>Loading...</p>}
+      {loading && <div className="flex justify-center items-center h-screen animate-spin"><Loader /></div>}
       {error && <p>Error: {error}</p>}
       {isBooked ? (
-        <p>Event successfully booked! Redirecting to your profile...</p>
+        <p>Event successfully booked!</p>
       ) : (
         <Button onClick={handleBookEvent} disabled={loading || seats <= 0}>
           {seats <= 0 ? 'No seats available': 'Book now'}

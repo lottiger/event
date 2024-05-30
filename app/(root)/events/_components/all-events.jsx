@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { FilterEvents } from "./filter-events"
+import { Loader } from "lucide-react"
 
 export const AllEvents = () => {
     const [events, setEvents] = useState([])
@@ -46,7 +47,7 @@ export const AllEvents = () => {
     })
 
     if (loading) {
-        return <div>Loading...</div>
+        return <div className="flex justify-center items-center h-screen animate-spin"><Loader /></div>
     }
 
     return (
@@ -58,7 +59,7 @@ export const AllEvents = () => {
                 {filteredEvents.map((event) => {
                     return (
                         <div key={event._id} className="card w-72 border rounded hover:bg-slate-50/5">
-                            <Link href={'/event/' + event._id}>
+                            <Link href={'/events/' + event._id}>
                                 <div className="h-64 w-72">
                                     {event.image ? (
                                         <Image
