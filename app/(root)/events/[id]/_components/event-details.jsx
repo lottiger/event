@@ -17,11 +17,12 @@ export const EventDetails = () => {
   useEffect(() => {
     const fetchEvent = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/events/${id}`);
+        const response = await fetch(`http://localhost:3000/api/events/${id}?id=${userId}`);
         if (!response.ok) {
           throw new Error('Failed to fetch event data');
         }
         const data = await response.json();
+        console.log(data)
         setEvent(data);
       } catch (error) {
         console.error('Error', error);
@@ -63,7 +64,7 @@ export const EventDetails = () => {
       <p>{event.date}</p>
       <p>Price: ${event.price}</p>
       <p>Seats left: {event.seats}</p>
-      <BookEventButton eventId={id} userId={userId} seats={event.seats} setSeats={(newSeats) => setEvent({ ...event, seats: newSeats })} />
+      <BookEventButton eventId={id} userId={userId} seats={event.seats} booked={event.booked} setSeats={(newSeats) => setEvent({ ...event, seats: newSeats })} />
     </div>
   );
 };

@@ -9,11 +9,11 @@ import Link from "next/link"
 export const Header = () => {
   
     return (
-    <div className="flex justify-between">
+    <div className=" container flex justify-between border-b py-5">
       <ModeToggle />
        <div className="flex">
        <div className="mr-4">
-            <Link href="/profie">
+            <Link href="/profile">
                 <Button variant="outline" size="icon">
                   <User />
                </Button>

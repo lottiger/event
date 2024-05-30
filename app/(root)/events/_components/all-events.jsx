@@ -52,13 +52,13 @@ export const AllEvents = () => {
 
     return (
         <>
-            <div>
+            <div className="pt-6">
                 <FilterEvents setFilterDate={handleFilterDate} setFilterLocation={handleFilterLocation} events={events} />
             </div>
             <div className="flex flex-wrap gap-6 justify-center">
                 {filteredEvents.map((event) => {
                     return (
-                        <div key={event._id} className="card w-72 border rounded hover:bg-slate-50/5">
+                        <div key={event._id} className="card shadow-md w-72 h-auto  rounded bg-slate-50/5 hover:bg-slate-50/10">
                             <Link href={'/events/' + event._id}>
                                 <div className="h-64 w-72">
                                     {event.image ? (
@@ -67,7 +67,7 @@ export const AllEvents = () => {
                                             width={288}
                                             height={256}
                                             alt={`${event.title} image`}
-                                            className="object-cover w-full h-full"
+                                            className="object-cover w-full h-full rounded-t"
                                         />
                                     ) : (
                                         <div className="h-full w-full flex items-center justify-center bg-gray-200">
@@ -80,7 +80,7 @@ export const AllEvents = () => {
                                     <p>{event.location}</p>
                                     <p>{event.date}</p>
                                     <p>Price: ${event.price}</p>
-                                    {event.seats > 0 ? <p>Seats left: {event.seats}</p> : <p className="text-destructive">No seats available</p>}
+                                    {event.seats > 0 ? <p>Seats left: {event.seats}</p> : <p className="text-destructive">No seats available!</p>}
                                     
                                 </div>
                             </Link>

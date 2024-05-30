@@ -3,9 +3,10 @@ import { Button } from '@/components/ui/button';
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Loader } from 'lucide-react';
+import { useAuth } from '@clerk/nextjs';
 
-export const BookEventButton = ({ eventId, userId, seats, setSeats }) => {
-  const [isBooked, setIsBooked] = useState(false);
+export const BookEventButton = ({ eventId, booked, userId, seats, setSeats }) => {
+  const [isBooked, setIsBooked] = useState(booked);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const router = useRouter();
@@ -26,12 +27,10 @@ export const BookEventButton = ({ eventId, userId, seats, setSeats }) => {
       if (!response.ok) {
         throw new Error('Failed to book event');
       }
-
       const updatedEvent = await response.json();
       setIsBooked(true);
-      setSeats(updatedEvent.seats);  // Update seats state with the new count
+      setSeats(updatedEvent.seats);  
 
-      // Redirect to the profile page after a successful booking
       router.push('/profile');
     } catch (err) {
       setError(err.message);
@@ -44,13 +43,12 @@ export const BookEventButton = ({ eventId, userId, seats, setSeats }) => {
     <div>
       {loading && <div className="flex justify-center items-center h-screen animate-spin"><Loader /></div>}
       {error && <p>Error: {error}</p>}
-      {isBooked ? (
-        <p>Event successfully booked!</p>
-      ) : (
+      
         <Button onClick={handleBookEvent} disabled={loading || seats <= 0}>
-          {seats <= 0 ? 'No seats available': 'Book now'}
+          {/* {seats <= 0 ? 'No seats available': 'Book now'} */}
+          {isBooked ? 'Cancel booking' : seats <= 0 ? 'No seats available' : 'Book now'}
+          
         </Button>
-      )}
     </div>
   );
 };

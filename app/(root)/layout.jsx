@@ -3,9 +3,9 @@ import { Header } from './_components/header'
 
 function RootLayout({children}) {
   return (
-    <div className='container mt-5'>
+    <div >
         <Header />
-        <main>
+        <main className='container mt-5'>
           {children}
         </main>
     </div>
