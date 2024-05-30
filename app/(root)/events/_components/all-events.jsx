@@ -4,7 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { FilterEvents } from "./filter-events"
-import { Loader } from "lucide-react"
+import { Calendar, Euro, Loader, MapPin, Ticket, Users } from "lucide-react"
 
 export const AllEvents = () => {
     const [events, setEvents] = useState([])
@@ -55,7 +55,7 @@ export const AllEvents = () => {
             <div className="pt-6">
                 <FilterEvents setFilterDate={handleFilterDate} setFilterLocation={handleFilterLocation} events={events} />
             </div>
-            <div className="flex flex-wrap gap-6 justify-center">
+            <div className="flex flex-wrap gap-8 justify-center">
                 {filteredEvents.map((event) => {
                     return (
                         <div key={event._id} className="card shadow-md w-72 h-auto  rounded bg-slate-50/5 hover:bg-slate-50/10">
@@ -75,13 +75,28 @@ export const AllEvents = () => {
                                         </div>
                                     )}
                                 </div>
-                                <div className="p-4">
-                                    <h2 className="text-2xl font-semibold">{event.title}</h2>
-                                    <p>{event.location}</p>
-                                    <p>{event.date}</p>
-                                    <p>Price: ${event.price}</p>
-                                    {event.seats > 0 ? <p>Seats left: {event.seats}</p> : <p className="text-destructive">No seats available!</p>}
+                                <div className="p-4 flex flex-col">
+                                   
+                                    <h2 className="text-2xl font-semibold flex justify-center mb-2">{event.title}</h2>
                                     
+                                    <div className="flex items-center gap-1 mb-1">
+                                        <MapPin size={18} />
+                                        <p> {event.location}</p>
+                                    </div>
+                                    <div className="flex items-center gap-1 mb-1">
+                                        <Calendar size={18} />
+                                    <p>{event.date}</p>
+                                    </div>
+                                    <div className="flex items-center gap-1 mb-2">
+                                    <Euro size={18} />
+                                    <p>{event.price}</p>
+                                    </div>
+                                    <div className="flex items-center gap-1">
+                                    {/* <Users size={18}/> */}
+                                    {event.seats > 0 ? <p> Tickets left: {event.seats}</p> : <p className="text-destructive">No ticket available!</p>}
+                                    </div>
+                                   
+                                   
                                 </div>
                             </Link>
                         </div>

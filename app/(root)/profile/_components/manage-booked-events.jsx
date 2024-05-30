@@ -43,7 +43,7 @@ const ManageBookedEvents = () => {
     <div>
  <div className='flex flex-col mt-10'>
         {Array.isArray(events) && events.map((event, index) => (
-          <div key={index} className=" h-28 overflow-hidden rounded hover:bg-slate-50/10 transition">
+          <div key={index} className=" h-28 overflow-hidden rounded shadow hover:bg-slate-50/10 transition">
             <Link href={`/events/${event._id}`} className="">
              
              

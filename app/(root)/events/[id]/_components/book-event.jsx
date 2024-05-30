@@ -45,9 +45,7 @@ export const BookEventButton = ({ eventId, booked, userId, seats, setSeats }) =>
       {error && <p>Error: {error}</p>}
       
         <Button onClick={handleBookEvent} disabled={loading || seats <= 0}>
-          {/* {seats <= 0 ? 'No seats available': 'Book now'} */}
           {isBooked ? 'Cancel booking' : seats <= 0 ? 'No seats available' : 'Book now'}
-          
         </Button>
     </div>
   );
