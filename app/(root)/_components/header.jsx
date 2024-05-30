@@ -9,7 +9,7 @@ import Link from "next/link"
 export const Header = () => {
   
     return (
-    <div className=" container flex justify-between border-b py-5">
+    <div className=" container flex justify-between bg-slate-50/5 py-5">
       <ModeToggle />
        <div className="flex">
        <div className="mr-4">

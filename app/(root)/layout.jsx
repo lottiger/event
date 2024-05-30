@@ -1,4 +1,5 @@
 
+import Footer from './_components/footer'
 import { Header } from './_components/header'
 
 function RootLayout({children}) {
@@ -8,6 +9,7 @@ function RootLayout({children}) {
         <main className='container mt-5'>
           {children}
         </main>
+        <Footer />
     </div>
   )
 }
