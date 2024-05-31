@@ -7,7 +7,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 
-const ManageBookedEvents = () => {
+const MyEvents = () => {
 
     const [events, setEvents] = useState([])
     const { user } = useUser()
@@ -72,4 +72,4 @@ const ManageBookedEvents = () => {
   )
 }
 
-export default ManageBookedEvents
+export default MyEvents
