@@ -44,9 +44,9 @@ export const BookEventButton = ({ eventId, booked, userId, seats, setSeats }) =>
       {loading && <div className="flex justify-center items-center h-screen animate-spin"><Loader /></div>}
       {error && <p>Error: {error}</p>}
       
-        <Button onClick={handleBookEvent} disabled={loading || seats <= 0}>
-          {isBooked ? 'Cancel booking' : seats <= 0 ? 'No seats available' : 'Book now'}
-        </Button>
+      <Button onClick={handleBookEvent} disabled={loading || (seats <= 0 && !isBooked)}>
+  {isBooked ? 'Cancel booking' : seats <= 0 ? 'No seats available' : 'Book now!'}
+</Button>
     </div>
   );
 };
